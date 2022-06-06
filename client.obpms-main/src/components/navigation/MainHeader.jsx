@@ -50,14 +50,14 @@ const HeaderFile = ({ user, token }) => {
   // console.log('fasdfds',user)
 
   const p = pages.filter((page) => {
-    if(user?.user?.active === true){
+    if (user?.user?.active === true) {
       //  // console.log(page.id === 0 )
       return page.id === 0 || page.id === 1 || page.id === 4 || page.id === 5;
-    } else{
+    } else {
       return page.id === 0 || page.id === 1 || page.id === 2 || page.id === 3 || page.id === 5
     }
-    
-  }) 
+
+  })
 
   // // console.log(user.message);
 
@@ -127,7 +127,7 @@ const HeaderFile = ({ user, token }) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            Glitter-Girls
+            <i>i</i>Saloon
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {p.map((navData, i) => (
@@ -146,7 +146,7 @@ const HeaderFile = ({ user, token }) => {
               </Link>
             ))}
           </Box>
-          {user.user  ?  (
+          {user.user ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -198,7 +198,7 @@ const HeaderFile = ({ user, token }) => {
                 </MenuItem>
               </Menu>
             </Box>
-          ):false} 
+          ) : false}
         </Toolbar>
       </Container>
     </AppBar>
@@ -210,7 +210,7 @@ const mapStatetoProps = (state) => ({
 });
 
 const mapDispatchtoProps = (dispatch) => ({
-  token: () => dispatch({ type: "LOGOUT"}),
+  token: () => dispatch({ type: "LOGOUT" }),
 });
 
 export default connect(mapStatetoProps, mapDispatchtoProps)(HeaderFile);
