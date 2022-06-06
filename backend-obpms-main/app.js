@@ -25,34 +25,35 @@ app.use(express.json())
 //   }
 // }
 // app.use(cors(corsOptions))
-app.use( cors())
+app.use(cors())
 
 mongoose.connect(
     // process.env.MONGO_DB,
-    process.env.MONGO_DB_lOCALHOST,
+    `mongodb+srv://navi:Navidbpass0000@cluster0-muobv.mongodb.net/saloon?retryWrites=true&w=majority`,
+    // process.env.MONGO_DB_lOCALHOST,
     {
         useNewUrlParser: true,
         // useUnifiedTopology: true
     })
-.then(()=>{
-    console.log('mongodb_connected')
-})
-.catch((err)=>{
-    // console.log(err)
-});
+    .then(() => {
+        console.log('mongodb_connected')
+    })
+    .catch((err) => {
+        // console.log(err)
+    });
 
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.status(200).json({
-    message:'This api is working perfactly.',
-     
-  })
-})   
+        message: 'This api is working perfactly.',
+
+    })
+})
 
 
 
-app.use('/api/users',userRouter)
-app.use('/api/parlours',parlourRouter)
+app.use('/api/users', userRouter)
+app.use('/api/parlours', parlourRouter)
 
 
 ///app error handler 
@@ -61,6 +62,6 @@ app.use(globalErrorHandler)
 
 const port = process.env.PORT || 3000
 
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })
