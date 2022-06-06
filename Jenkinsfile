@@ -1,30 +1,65 @@
 pipeline{
+    agent any
     stages{
-        stage('Stoping backend server'){
+        stage('Stoping-backend-server'){
             steps{
-                sh 'pm2 stop app'
+                 script {
+                    try {
+                        sh 'pm2 stop app'
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                }
             }
         }
-        stage('Get Code'){
+        stage('Get-Code'){
             steps{
                 git branch: 'main', url: 'https://github.com/navimaurya/Major-project-Saloon.git'
                                 
             }
         }
-        stage('Starting backend server'){   
-            sh 'pm2 start "$PWD/backend-obpms-main/app.js"'
+        stage('Starting-backend-server'){  
+            steps{
+                dir("backend-obpms-main") {
+                    sh "ls"
+                    sh 'sudo cp /home/ubuntu/env/server.env .env'
+                    script {
+                        try {
+                            sh 'npm install'
+                            sh 'pm2 start app.js'
+                        } catch (err) {
+                            echo err.getMessage()
+                        }
+                    }
+
+                } 
+            }
         }
-        stage('Build Website'){
-            sh 'echo "$PWD/client.obpms-main"'
-            sh 'cd "$PWD/client.obpms-main"'
-            sh 'yarn && yarn run build'
-            sh 'sudo cp -rf build/* /var/www/navimaurya.in'
+        stage('Build-Website'){
+            steps {
+                sh 'echo "$PWD/Major-project-Saloon/client.obpms-main"'
+                sh "ls"
+                dir("client.obpms-main") {
+                    sh "ls"
+                    sh 'sudo cp /home/ubuntu/env/client.env .env'
+                    sh 'yarn && CI=false yarn run build'
+                    sh 'sudo cp -rf build/* /var/www/navimaurya.in'
+                }
+
+            }
         }
-        stage('Build Admin dashboard'){
-            sh 'echo "$PWD/parlour-obpms-main"'
-            sh 'cd "$PWD/parlour-obpms-main"'
-            sh 'yarn && yarn run build'
-            sh 'sudo cp -rf build/* /var/www/admin.navimaurya.in'
+        stage('Build-Admin-dashboard'){
+            steps{
+            sh 'echo "parlour-obpms-main"'
+            sh 'ls'
+            dir("parlour-obpms-main") {
+                sh "ls"
+                sh 'sudo cp /home/ubuntu/env/admin.env .env'
+                sh 'yarn && CI=false yarn run build'
+                sh 'sudo cp -rf build/* /var/www/admin.navimaurya.in'
+            }
+
+            }
         }
 
     }
