@@ -34,11 +34,10 @@ const sendEmail = async (options)=>{
        },
        Source: '6iffcoo@gmail.com', /* required */
      };
-
      // Create the promise and SES service object
      await new AWS.SES({ apiVersion: '2010-12-01' }).sendEmail(params).promise();
      // Handle promise's fulfilled/rejected states
-     return true
+     return true;
    } catch (error) {
      next(new AppError("Email verification failed", 400))
    }

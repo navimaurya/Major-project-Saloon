@@ -31,16 +31,12 @@ pipeline{
                             echo err.getMessage()
                         }
                     }
-
                 } 
             }
         }
         stage('Build-Website'){
             steps {
-                sh 'echo "$PWD/Major-project-Saloon/client.obpms-main"'
-                sh "ls"
                 dir("client.obpms-main") {
-                    sh "ls"
                     sh 'sudo cp /home/ubuntu/env/client.env .env'
                     sh 'yarn && CI=false yarn run build'
                     sh 'sudo cp -rf build/* /var/www/navimaurya.in'
@@ -50,10 +46,7 @@ pipeline{
         }
         stage('Build-Admin-dashboard'){
             steps{
-            sh 'echo "parlour-obpms-main"'
-            sh 'ls'
             dir("parlour-obpms-main") {
-                sh "ls"
                 sh 'sudo cp /home/ubuntu/env/admin.env .env'
                 sh 'yarn && CI=false yarn run build'
                 sh 'sudo cp -rf build/* /var/www/admin.navimaurya.in'
