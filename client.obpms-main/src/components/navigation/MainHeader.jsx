@@ -77,7 +77,9 @@ const HeaderFile = ({ user, token }) => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            Glitter-Girls
+            <span className=" text-white" style={{ color: '#fff' }}>
+              <i className=" lowercase" style={{ textTransform: "lowercase" }}>i</i>Saloon
+            </span>
           </Typography>
           {/* <img src='/assets/Artboard 1logo.svg' className='logo'></img> */}
 
@@ -127,7 +129,9 @@ const HeaderFile = ({ user, token }) => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            <i>i</i>Saloon
+            <span className=" text-white" style={{ color: '#fff' }}>
+              <i className=" lowercase" style={{ textTransform: "lowercase" }}>i</i>Saloon
+            </span>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {p.map((navData, i) => (

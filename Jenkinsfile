@@ -5,7 +5,7 @@ pipeline{
             steps{
                  script {
                     try {
-                        sh 'pm2 stop app'
+                        sh 'pm2 stop all'
                     } catch (err) {
                         echo err.getMessage()
                     }
@@ -22,11 +22,12 @@ pipeline{
             steps{
                 dir("backend-obpms-main") {
                     sh "ls"
-                    sh 'sudo cp /home/ubuntu/env/server.env .env'
+                    sh 'sudo cp -rf * /home/ubuntu/Project/backend-obpms-main/'
+                    sh 'sudo cp -f /home/ubuntu/env/server.env /home/ubuntu/Project/backend-obpms-main/.env'
                     script {
                         try {
-                            sh 'npm install'
-                            sh 'pm2 start app.js'
+                            sh 'sudo npm install'
+                            sh 'sudo pm2 restart all'
                         } catch (err) {
                             echo err.getMessage()
                         }

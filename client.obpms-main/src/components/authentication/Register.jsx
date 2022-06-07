@@ -132,6 +132,7 @@ const Register = ({ token }) => {
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
                 variant="outlined"
+                inputProps={{ maxLength: 15 }}
               />
               <TextField
                 error={Boolean(
@@ -146,6 +147,7 @@ const Register = ({ token }) => {
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
                 variant="outlined"
+                inputProps={{ maxLength: 15 }}
               />
               <TextField
                 error={Boolean(formik.touched.phone && formik.errors.phone)}
@@ -159,6 +161,7 @@ const Register = ({ token }) => {
                 type="number"
                 value={formik.values.phone}
                 variant="outlined"
+                inputProps={{ maxLength: 10 }}
               />
               <TextField
                 error={Boolean(formik.touched.email && formik.errors.email)}
@@ -172,6 +175,7 @@ const Register = ({ token }) => {
                 type="email"
                 value={formik.values.email}
                 variant="outlined"
+                inputProps={{ maxLength: 30 }}
               />
               <TextField
                 error={Boolean(
@@ -187,6 +191,7 @@ const Register = ({ token }) => {
                 type="password"
                 value={formik.values.password}
                 variant="outlined"
+                inputProps={{ maxLength: 30 }}
               />
               <Box
                 sx={{
@@ -251,7 +256,7 @@ const Register = ({ token }) => {
             </form>
           </Container>
         ) : (
-          <Container maxWidth="sm"  className="verification">
+          <Container maxWidth="sm" className="verification">
             <Box sx={{ py: 5 }}>
               <Typography variant="h6" gutterBottom color="text.primary" mt={2}>
                 Email Verification Pending
@@ -262,13 +267,13 @@ const Register = ({ token }) => {
                 gutterBottom
                 color="text.secondary"
               >
-                Hi <span style={{color:"#e52e71"}}>{formik.values.firstName + " " + formik.values.lastName}</span>,
+                Hi <span style={{ color: "#e52e71" }}>{formik.values.firstName + " " + formik.values.lastName}</span>,
                 <br />
                 Thank you for choosing Us to deal with OBPMS client portal.
                 <br />
                 We need a little more information to complete your registration,
                 including a confirmation of your email address. Kindly open your
-                inbox of <span style={{color:"#e52e71"}}>{formik.values.email}</span> and tap on link to verify.
+                inbox of <span style={{ color: "#e52e71" }}>{formik.values.email}</span> and tap on link to verify.
                 <br />
                 After verifying the email tap on the login button below to access the portal.
               </Typography>

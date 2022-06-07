@@ -8,8 +8,8 @@ const sendEmail = async (options)=>{
   const {next } = options
   try {
     AWS.config.update({ 
-      accessKeyId: "AKIAS53CQ6EMI6P4MWUU",
-      secretAccessKey: "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",
+      accessKeyId: process.env.AWS_KEY_ID,
+      secretAccessKey: process.env.AWS_ACCESS_KEY,
       // Set the region 
        region: "us-west-2"
        });

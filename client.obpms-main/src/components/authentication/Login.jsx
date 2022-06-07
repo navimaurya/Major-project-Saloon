@@ -94,6 +94,7 @@ const Login = ({ token }) => {
                     type="email"
                     value={formik.values.email}
                     variant="outlined"
+                    inputProps={{ maxLength: 30 }}
                   />
                   <TextField
                     error={Boolean(
@@ -111,6 +112,7 @@ const Login = ({ token }) => {
                     type="password"
                     value={formik.values.password}
                     variant="outlined"
+                    inputProps={{ maxLength: 30 }}
                   />
 
                   {error ? (
@@ -134,11 +136,11 @@ const Login = ({ token }) => {
                       Sign In Now
                       {
                         isLoading &&
-                      <Stack
-                        sx={{ color: "grey.500", pl:2 }}
-                      >
-                        <CircularProgress color="warning" />
-                      </Stack>
+                        <Stack
+                          sx={{ color: "grey.500", pl: 2 }}
+                        >
+                          <CircularProgress color="warning" />
+                        </Stack>
                       }
                     </Button>
                   </Box>
