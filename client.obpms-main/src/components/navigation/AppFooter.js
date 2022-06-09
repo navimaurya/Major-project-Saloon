@@ -10,7 +10,9 @@ function Copyright() {
     <React.Fragment>
       Copyright {"© "}
       <Link color="inherit" to="/" className="textD">
-        Glitter-Girls
+        <span className=" text-white" >
+          <i className=" lowercase" style={{ textTransform: "lowercase" }}>i</i>Saloon
+        </span>
       </Link>{" "}
       {new Date().getFullYear()}
     </React.Fragment>
@@ -78,14 +80,14 @@ export default function AppFooter() {
             <Typography variant="h6" marked="left" gutterBottom>
               Our Partners
             </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
+            {/* <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link to="/" className="textD">Saloon 1</Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link to="/" className="textD">Saloon 2</Link>
               </Box>
-            </Box>
+            </Box> */}
           </Grid>
         </Grid>
       </Container>

@@ -65,7 +65,7 @@ function HowWeWorks() {
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  Appointment every Wednesday 9am.
+                  Book Appointment every day.
                 </Typography>
               </Box>
             </Grid>
@@ -106,7 +106,7 @@ function HowWeWorks() {
           size="large"
           variant="contained"
           component="a"
-          href="/register"
+          href="/product"
           sx={{ mt: 5 }}
         >
           Get started

@@ -17,17 +17,17 @@ import { useNavigate } from "react-router-dom";
 
 
 function loadScript(src) {
-	return new Promise((resolve) => {
-		const script = document.createElement('script')
-		script.src = src
-		script.onload = () => {
-			resolve(true)
-		}
-		script.onerror = () => {
-			resolve(false)
-		}
-		document.body.appendChild(script)
-	})
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
 }
 
 
@@ -44,7 +44,7 @@ const Appointment = ({ user }) => {
   const [appDate, setAppDate] = React.useState("");
   const [appTime, setAppTime] = React.useState("");
 
-  
+
   React.useEffect(() => {
     const getProduct = async (id) => {
       try {
@@ -75,27 +75,27 @@ const Appointment = ({ user }) => {
       ProductName: allpros?.title,
       takenTime: allpros?.duration,
       date: new Date(`${appDate} ${appTime}`),
-      price: allpros?.price*1,
+      price: allpros?.price * 1,
       email: allpros?.parlour?.email,
       parlour: allpros?.parlour?.id,
     };
 
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
-		if (!res) {
-			alert('Razorpay SDK failed to load. Are you online?')
-			return
-		}
- 
+    if (!res) {
+      alert('Razorpay SDK failed to load. Are you online?')
+      return
+    }
+
     if (appDate && appTime) {
-      try {       
+      try {
         const razorpay = await axios.post("/api/users/razorpay", data, {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
-        }) 
+        })
         const options = {
-          key:'rzp_test_x9p9LcFO0lqDba',
+          key: 'rzp_test_x9p9LcFO0lqDba',
           currency: razorpay.data.currency,
           amount: razorpay.data.amount.toString(),
           order_id: razorpay.data.id,
@@ -107,18 +107,18 @@ const Appointment = ({ user }) => {
                 Authorization: `Bearer ${user.token}`,
               },
             });
-            
-            alert(userData?.data?.data?.status);
-            navigate("/product");
+
+            alert("Your appointment booked successfully!");
+            navigate("/booking");
           },
-    
+
         }
 
         const paymentObject = new window.Razorpay(options)
         paymentObject.open()
-      //  // console.log(razorpay.data); 
-        
-        
+        //  // console.log(razorpay.data); 
+
+
       } catch (error) {
         // setProgress(1);
         // console.log(error.response.data);
@@ -138,7 +138,7 @@ const Appointment = ({ user }) => {
               Appointment Scheduling Window
             </Typography>
             <Divider />
-            <Stack component="form" sx={{py:4}}>
+            <Stack component="form" sx={{ py: 4 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
                   <Box sx={{ width: "100%", paddingTop: "15px" }}>
@@ -228,7 +228,7 @@ const Appointment = ({ user }) => {
                     id="date"
                     label="Select date"
                     type="date"
-                    defaultValue="2022-03-26"
+                    defaultValue={'2022-06-09'}
                     fullWidth
                     InputLabelProps={{
                       shrink: true,
@@ -242,7 +242,7 @@ const Appointment = ({ user }) => {
                     fullWidth
                     label="Select timing"
                     type="time"
-                    defaultValue="07:30"
+                    defaultValue="05:30"
                     InputLabelProps={{
                       shrink: true,
                     }}

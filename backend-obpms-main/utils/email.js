@@ -39,7 +39,10 @@ const sendEmail = async (options)=>{
      // Handle promise's fulfilled/rejected states
      return true;
    } catch (error) {
-     next(new AppError("Email verification failed", 400))
+    console.log(error);
+     if(next){
+       return next(new AppError("Email verification failed", 400))
+     }
    }
   
 }
